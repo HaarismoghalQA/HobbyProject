@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.qa.hobby.domain.Player;
 import com.qa.hobby.service.PlayerService;
 
-
-
 @RestController
 public class PlayerController {
 	
@@ -43,7 +41,7 @@ public class PlayerController {
 	    }
 
 	    @DeleteMapping("/delete/{id}")
-	    public boolean removePerson(@PathVariable Long id) {
+	    public boolean removePlayer(@PathVariable Long id) {
 	        // Remove Person and return it
 	    	return this.service.removePlayer(id);
 	    }
