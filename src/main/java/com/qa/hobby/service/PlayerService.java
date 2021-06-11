@@ -34,7 +34,7 @@ public class PlayerService {
         Player existing = existingOptional.get();
 
         existing.setAge(player.getAge());
-        existing.setName(player.getName()); 
+        existing.setPlayerName(player.getPlayerName()); 
 
         return this.repo.save(existing);
     }

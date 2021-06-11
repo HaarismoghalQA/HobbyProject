@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Player {
@@ -12,25 +13,28 @@ public class Player {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	Long PlayerId;
-	@Column(nullable = false)
-	String Name;
-	@Column(nullable = false)
+	
+	String PlayerName;
+	
 	int age;
+
+	@ManyToOne
+	private Team team;
 
 	public Player() {
 		super();
 	}
 
-	public Player(Long playerId, String name, int age) {
+	public Player(Long playerId, String playerName, int age) {
 		super();
 		PlayerId = playerId;
-		Name = name;
+		PlayerName = playerName;
 		this.age = age;
 	}
 
 	public Player(String name, int age) {
 		super();
-		Name = name;
+		PlayerName = name;
 		this.age = age;
 	}
 
@@ -42,12 +46,12 @@ public class Player {
 		PlayerId = playerId;
 	}
 
-	public String getName() {
-		return Name;
+	public String getPlayerName() {
+		return PlayerName;
 	}
 
-	public void setName(String name) {
-		Name = name;
+	public void setPlayerName(String name) {
+		PlayerName = name;
 	}
 
 	public int getAge() {
@@ -57,19 +61,25 @@ public class Player {
 	public void setAge(int age) {
 		this.age = age;
 	}
-	
-	
+
+	public Team getTeam() {
+		return team;
+	}
+
+	public void setTeam(Team team) {
+		this.team = team;
+	}
 
 	@Override
 	public String toString() {
-		return "Player [PlayerId=" + PlayerId + ", Name=" + Name + ", age=" + age + "]";
+		return "Player [PlayerId=" + PlayerId + ", Name=" + PlayerName + ", age=" + age + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((Name == null) ? 0 : Name.hashCode());
+		result = prime * result + ((PlayerName == null) ? 0 : PlayerName.hashCode());
 		result = prime * result + ((PlayerId == null) ? 0 : PlayerId.hashCode());
 		result = prime * result + age;
 		return result;
@@ -84,10 +94,10 @@ public class Player {
 		if (getClass() != obj.getClass())
 			return false;
 		Player other = (Player) obj;
-		if (Name == null) {
-			if (other.Name != null)
+		if (PlayerName == null) {
+			if (other.PlayerName != null)
 				return false;
-		} else if (!Name.equals(other.Name))
+		} else if (!PlayerName.equals(other.PlayerName))
 			return false;
 		if (PlayerId == null) {
 			if (other.PlayerId != null)
