@@ -1,36 +1,57 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HomePage</title>
-    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.83.1">
+    <title>Headers · Bootstrap v5.0</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/headers/">
+
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+
         div.Title {
             display: flex;
             justify-content: center;
-        }
-        body{
-            background:#808080 url('img/bg.jpg') ;
-            height: 500px; /* You must set a specified height */
-            background-position: center; /* Center the image */
-            background-repeat: no-repeat; /* Do not repeat the image */
-            background-size: cover; /* Resize the background image to cover the entire container */
-            background-attachment:fixed
+            position: relative;
+            left: 11em;
+            bottom: 2.8em;
         }
 
-        div.TopBox{
-            margin-top: 5em;
-            margin-left: 20em;
-            border-style: solid;
-            display: flex;
-            justify-content: center;
-            width: 20em;
-            height: 20em;
-            
+        div.body {
+
+            background: rgb(255, 255, 255);
+            background: radial-gradient(circle, rgba(255, 255, 255, 0) 10%, rgba(143, 140, 140, 0.5410539215686274) 100%);
+
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            left: 0;
         }
-        div.img{        
+
+        div.img {
             background-image: url('bg.jpg');
             background-attachment: fixed;
             background-position-x: -10PX;
@@ -40,37 +61,108 @@
             height: 100%;
         }
 
-        div.BottomBox{
-            margin-top: 5em;
-            margin-left: 20em;
-            border-style: solid;
-            display: flex;
-            justify-content: center;
-            width: 20em;
-            height: 20em;
-        }
-
-        h2.TeamText{
+        h2.TeamText {
             margin-top: 150px;
         }
 
-    </style>
-</head>
-<body>
-    
-        <div class="Title"> <h1> Arsenal Fantasy Football </h1> </div>
+        main>.container {
+            padding: 60px 15px 0;
 
-        <div class= "Title"> 
-            <div class ="TopBox">    
-                <div> <a href= arsenal.html><img src="img/arsenal.jpg" alt ="image of Arsenal" width="100%" height="100%"></div></a>
-            </div>
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 50px;
+        }
+
+        div.logo {
+            margin-left: 0em;
+            margin-top: 0px;
+            position: relative;
+            right: 20px;
+            bottom: 50px;
+            height: 50px;
+            width: 150px;
+        }
+
+        
+    </style>
+
+
+    <!-- Custom styles for this template -->
+    <link href="headers.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class=body>
+        
+    </div>
+
+    <!-- Header/Nav bar -->
+    <main class="p-1 bg-danger">
+        <div class="container">
+
+            <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between">
+
+                <!-- Logo -->
+                <div class="logo">
+                    <a href=index.html>
+                        <div> <img src="img/logo.svg" alt="image of Arsenal" width="100%" length="100%"></div>
+                    </a>
+                </div>
+
+                <a href="/" class="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none">
+                    <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
+                        <use xlink:href="#bootstrap" />
+                    </svg>
+                </a>
+
+                <!-- NavBar list -->
+
+                <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="index.html" class="nav-link px-4 link-light">Home</a></li>
+                    <li><a href="index.html" class="nav-link px-4 link-light">Create Team</a></li>
+                    <li><a href="#index.html" class="nav-link px-4 link-light">News</a></li>
+                    <li><a href="#" class="nav-link px-4 link-light">FAQs</a></li>
+                    <li><a href="#" class="nav-link px-4 link-light">About</a></li>
+                </ul>
+
+                <div class="col-md-3 text-end">
+                    <button type="button" class="btn btn-outline-primary me-2">Login</button>
+                    <button type="button" class="btn btn-primary">Sign-up</button>
+                </div>
+                <!-- Title -->
+
+                <div class="Title">
+                    <h3 style="color:white;"> Arsenal Fantasy Team </h3>
+                </div>
+            </header>
+
         </div>
-        <div class= "Title">
-            <div class="BottomBox"> 
-                <div> <a href= ManUTD.html><img src="img/ManUTD.jpg" alt ="image of Manchester United" width="100%" height="100%"></div></a>        
-            </div>
+    </main>
+
+
+
+
+
+
+
+
+    <!-- slideshow right -->
+
+
+
+    <!-- Footer -->
+    <footer class="footer mt-auto py-3 bg-light ">
+        <div class="container">
+            <span class="text-muted">&copy;Haaris Moghal</span>
         </div>
-   
-    
+    </footer>
+
 </body>
+
 </html>
