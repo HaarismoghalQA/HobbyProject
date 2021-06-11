@@ -4,18 +4,18 @@ import java.util.List;
 
 public class TeamDTO {
 
-	private Long Teamid;
+	private Long TeamId;
 
 	private String TeamName;
 
 	private List<PlayerDTO> players;
 
 	public Long getTeamId() {
-		return Teamid;
+		return TeamId;
 	}
 
 	public void setTeamId(Long id) {
-		this.Teamid = id;
+		this.TeamId = id;
 	}
 
 	public String getTeamName() {
