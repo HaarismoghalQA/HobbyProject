@@ -1,0 +1,68 @@
+<!-- slideshow left -->
+<div class=SlideShowLeft>
+    <script>
+        var i = 0; // start point
+        var images = [];
+        var time = 3000;
+
+        //image list
+
+        images[0] = "playerImages/henry.png";
+        images[1] = "playerImages/ronaldo.png";
+        images[2] = "playerImages/dybala.png";
+        images[3] = "playerImages/henry.png";
+
+        // Change Image
+        function changeImg() {
+            document.slide.src = images[i];
+
+            if (i < images.length - 1) {
+                i++
+            } else {
+                i = 0;
+            }
+            setTimeout("changeImg()", time);
+        }
+        window.onload = changeImg;
+    </script>
+    <img name="slide" width="350" height="700">
+</div>
+
+<!-- slideshow right -->
+<div class=SlideShowRight>
+    <script>
+        var i = 0; // start point
+        var image = [];
+        var time = 3000;
+        //image list
+        image[0] = "playerImages/neymar.png";
+        image[1] = "playerImages/ronaldo.png";
+        image[2] = "playerImages/dybala.png";
+        // Change Image
+        function changeImgs() {
+            document.test.src = image[i];
+            if (i < image.length - 1) {
+                i++
+            } else {
+                i = 0;
+            }
+            setTimeout("changeImgs()", time);
+        }
+        window.onload = changeImgs;
+    </script>
+    <img name="test" width="350" height="700">
+</div>
+
+
+div.SlideShowLeft {
+    position: relative;
+    top: 15em;
+    left: 2em;
+}
+
+div.SlideShowRight {
+    position: relative;
+    bottom: 28em;
+    left: 110em;
+}
+
