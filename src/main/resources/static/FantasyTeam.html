@@ -125,6 +125,12 @@
             border-color: red;
             border-top: solid;
         }
+
+        #updateForm {
+            display: none;
+            z-index: 10;
+
+        }
     </style>
 
 
@@ -161,15 +167,13 @@
                         <li><a href="index.html" class="nav-link px-4 link-light">
                                 <p style="font-size: 17px; font-weight: bold;">Home</p>
                             </a></li>
-                        <li><a href="index.html" class="nav-link px-4 link-light">
+                        <li><a href="FantasyTeam.html" class="nav-link px-4 link-light">
                                 <p style="font-size: 17px; font-weight: bold;">Fantasy Team</p>
                             </a></li>
-                        <li><a href="#index.html" class="nav-link px-4 link-light">
-                                <p style="font-size: 17px; font-weight: bold;">News</p>
+                        <li><a href="CreateTeam.html" class="nav-link px-4 link-light">
+                                <p style="font-size: 17px; font-weight: bold;">Create Team</p>
                             </a></li>
-                        <li><a href="#" class="nav-link px-4 link-light">
-                                <p style="font-size: 17px; font-weight: bold;">FAQs</p>
-                            </a></li>
+
                         <li><a href="#" class="nav-link px-4 link-light">
                                 <p style="font-size: 17px; font-weight: bold;">About</p>
                             </a></li>
@@ -196,6 +200,12 @@
             <section class="col">
                 <div class="CreatePlayer">
                     <form id="createForm">
+                        <label for="teamId">Select a Team ID:</label>
+                        <select name="teamId" id="teamId">
+                            <option value="">--Please choose an option--</option>                            
+                        </select>
+
+                        <p></p>
                         <label for="playerName" class="form-label">Player Name</label>
                         <input id="playerName" name="playerName" type="text" class="form-control">
                         <label for="age" class="form-label">Player Age</label>
@@ -204,9 +214,23 @@
                         <button type="reset" class="btn btn-primary">Reset</button>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
+
+                    <form id="updateForm">
+                        <h2 style="color: #0f2f70;">Update Player</h2>
+                        <label for="playerName" class="form-label">Player Name</label>
+                        <input id="playerName" name="playerName" type="text" class="form-control">
+                        <label for="age" class="form-label">Player Age</label>
+                        <input id="age" name="age" type="text" class="form-control">
+                        <p></p>
+                        <button type="reset" class="btn btn-primary">Reset</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+
             </section>
             <section class="col">
-                <div id="output" class="card-group row row-cols-4 g-4">
+                <div id="output" class="card-group row row-cols-3 g-4">
+
+                    <!-- output comes from javascript! -->
 
                 </div>
             </section>
@@ -221,6 +245,10 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="index.js"></script>
     </div>
+
+
+
+
 
 
     <!-- Footer -->

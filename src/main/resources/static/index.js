@@ -2,13 +2,38 @@
 
 const output = document.getElementById("output");
 
+const select = document.getElementById("teamId");
+
+ 
+
+const getTeam = async () => {
+    const res = await axios.get("/team/getTeam");
+    output.innerHTML = "";
+    res.data.forEach(team => {
+        console.log(team);
+        renderPlayer(team);
+    });
+}
+
+ 
+
+// const renderTeam = ({teamId, teamName}) => {
+//     const option = document.createElement("option");
+//     column.setProperty("teamId", teamId);
+//     option.innerText = `${teamName}`;
+//     select.appendChild(option);
+// }
+
 const getPlayer = async () => {
     const res = await axios.get("/player/getAll");
     output.innerHTML = "";
-    res.data.forEach(player => renderPlayer(player));
+    res.data.forEach(player => {
+        console.log(player);
+        renderPlayer(player);
+    });
 }
 
-const renderPlayer = ({ id, playerName, age }) => {
+const renderPlayer = ({ playerId, playerName, age }) => {
     const column = document.createElement("div");
     column.className = "col";
 
@@ -20,9 +45,34 @@ const renderPlayer = ({ id, playerName, age }) => {
     cardBody.className = "card-body";
     card.appendChild(cardBody);
 
+    //trying something
+
+    // const option = document.createElement("option");
+    // column.setProperty("teamId", teamId);
+    // option.innerText = `${teamName}`;
+    // select.appendChild(option);
+
+
+    
+
+    // const teamIdText = document.createElement("p");
+    // teamIdText.className = "card-text";
+    // teamIdText.innerText = `teamId: ${teamId}`;
+    // cardBody.appendChild(teamIdText);
+
+    // const teamNameText = document.createElement("p");
+    // teamNameText.className = "card-text";
+    // teamNameText.innerText = `teamName: ${teamName}`;
+    // cardBody.appendChild(teamNameText);
+
+    const PlayerIdText = document.createElement("p");
+    PlayerIdText.className = "card-text";
+    PlayerIdText.innerText = `PlayerId: ${playerId}`;
+    cardBody.appendChild(PlayerIdText);
+
     const playerText = document.createElement("p");
     playerText.className = "card-text";
-    playerText.innerText = `PlayerName: ${playerName}`;
+    playerText.innerText = `playerName: ${playerName}`;
     cardBody.appendChild(playerText);
 
     const AgeText = document.createElement("p");
@@ -38,29 +88,59 @@ const renderPlayer = ({ id, playerName, age }) => {
     deleteButton.innerText = "Delete";
     deleteButton.className = "card-link";
     deleteButton.addEventListener("click", function () {
-        deletePlayer(id);
+        deletePlayer(playerId);
     })
         
-    // const updateButton = document.createElement("a");
-    // updateButton.innerText = "Update";
-    // updateButton.className = "card-link";
-    // updateButton.addEventListener("click", function () {
-    //     updatePlayer(id);
-    // });
-    
-    cardFooter.appendChild(deleteButton);
+    const updateButton = document.createElement("a");
+    updateButton.innerText = "Update";
+    updateButton.className = "card-link";
+    updateButton.addEventListener("click", function () {
+        document.getElementById("updateForm").style.display = "inline";
+        
+        document.getElementById("updateForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+            const data = {
+                playerId: playerId,
+                playerName: this.playerName.value,
+                age: this.age.value,
+                team: {           
+                    teamId: teamId,
+                    teamName:this.teamName.value        
+                }
+        
+            }
+        
+            axios.put(`/player/update/${playerId}`, data)
+                .then(res => {
+                    getPlayer();
+                    this.reset();
+                   
+                }).catch(err => console.log(err));
+                console.log(this);
+        });
+       // updatePlayer(playerId);
+    });
 
+    cardFooter.appendChild(deleteButton);
+    cardFooter.appendChild(updateButton);
     output.appendChild(column);
 }
 
 getPlayer();
 
+
+
 document.getElementById("createForm").addEventListener("submit", function (event) {
     event.preventDefault();
 
     const data = {
+        
         playerName: this.playerName.value,
-        age: this.age.value
+        age: this.age.value,
+        team: {           
+            teamId: 1,
+            teamName:"arsenal"           
+        }
 
     }
 
@@ -68,30 +148,37 @@ document.getElementById("createForm").addEventListener("submit", function (event
         .then(res => {
             getPlayer();
             this.reset();
-            //this.Name.focus();
+            //this.PlayerId.focus();
         }).catch(err => console.log(err));
 
     console.log(this);
 });
 
-// document.getElementById("updateForm").addEventListener("update", function (event) {
-//     event.preventDefault();
+
+// const updatePlayer = async (id) => {
+//    // const res = await axios.put("/player/update/${id}");
+
 //     const data = {
-//         id: this.id.value,
-//         player: this.player.value,
-//         age: this.age.value,
+//         playerId: id,
+//         playerName: "test",
+//         age: 67,
+//         team: {           
+//             teamId: 1,
+//             teamName:"arsenal"           
+//         }
 
 //     }
 
-//     axios.put("/player/update", data)
+//     axios.put(`/player/update/${id}`, data)
 //         .then(res => {
 //             getPlayer();
 //             this.reset();
-//             this.make.focus();
+//            // this.PlayerId.focus();
 //         }).catch(err => console.log(err));
+//         console.log(this);
+// };
 
-//     console.log(this);
-// });
+
 
 const deletePlayer = async (id) => {
     const res = await axios.delete(`/player/delete/${id}`);
