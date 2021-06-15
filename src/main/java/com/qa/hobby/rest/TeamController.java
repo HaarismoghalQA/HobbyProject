@@ -49,14 +49,14 @@ public class TeamController {
 		return this.service.getTeam();
 	}
 
-	@PutMapping("/update/{id}")
-	public TeamDTO updateTeam(@RequestBody Team team, @PathVariable Long id) {
-		return this.service.updateTeam(id, team);
+	@PutMapping("/update/{TeamId}")
+	public TeamDTO updateTeam(@RequestBody Team team, @PathVariable Long TeamId) {
+		return this.service.updateTeam(TeamId, team);
 	}
 
-	@DeleteMapping("/remove/{id}")
-	public boolean delete(@PathVariable Long id) {
-		return this.service.delete(id);
+	@DeleteMapping("/remove/{TeamId}")
+	public boolean delete(@PathVariable Long TeamId) {
+		return this.service.delete(TeamId);
 	}
 
 }

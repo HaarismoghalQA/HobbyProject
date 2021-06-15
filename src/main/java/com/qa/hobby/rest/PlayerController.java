@@ -46,15 +46,15 @@ public class PlayerController {
 			return this.service.getPlayer();
 		}
 
-	    @PutMapping("/update/{id}")
-	    public PlayerDTO updatePlayer(@PathVariable Long id, @RequestBody Player player) {
-	    	return this.service.updatePlayer(id, player);
+	    @PutMapping("/update/{playerId}")
+	    public PlayerDTO updatePlayer(@PathVariable Long playerId, @RequestBody Player player) {
+	    	return this.service.updatePlayer(playerId, player);
 	    }
 
-	    @DeleteMapping("/delete/{id}")
-	    public boolean removePlayer(@PathVariable Long id) {
+	    @DeleteMapping("/delete/{playerId}")
+	    public boolean removePlayer(@PathVariable Long playerId) {
 	        // Remove Person and return it
-	    	return this.service.removePlayer(id); 
+	    	return this.service.removePlayer(playerId); 
 	    }
 
 }

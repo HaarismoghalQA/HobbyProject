@@ -8,7 +8,7 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.83.1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arsenal FC</title>
+    <title>Create Fantasy Team</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/headers/">
 
@@ -38,8 +38,6 @@
             position: relative;
             bottom: 5px;
             left: 0em;
-
-
 
         }
 
@@ -102,14 +100,7 @@
             width: 83em;
         }
 
-        div.wenger {
-            border-top: solid;
-            border-color: red;
-            position: relative;
-            left: 62em;
-            width: 20em;
-            height: 50px;
-        }
+
 
         button.btn1 {
             background-color: transparent;
@@ -128,6 +119,16 @@
             left: 18em;
             width: 50px;
             bottom: 10px;
+        }
+
+        .createPlayer {
+            border-color: red;
+            border-top: solid;
+        }
+        #updateForm{
+             display: none; 
+             z-index: 10;
+
         }
     </style>
 
@@ -171,7 +172,7 @@
                         <li><a href="CreateTeam.html" class="nav-link px-4 link-light">
                                 <p style="font-size: 17px; font-weight: bold;">Create Team</p>
                             </a></li>
-                    
+                       
                         <li><a href="#" class="nav-link px-4 link-light">
                                 <p style="font-size: 17px; font-weight: bold;">About</p>
                             </a></li>
@@ -190,27 +191,58 @@
 
 
     <div class="mainBody ">
-        <p></p>
-        <h2 style="color: #0f2f70;"> Arsenal History</h2>
-        <p style="font-size: 20px;"> As one of the most successful and beloved clubs in England, Arsenal Football Club
-            was always a magnet for the public. Tradition-wise, their results speak for themselves; in addition to
-            winning 28 major domestic trophies, Arsenal hold the records for longest unbeaten streak and longest run in
-            top flight of English football.
-        </p>
-        <div class="wenger">
-            <img src="img/WengerGoldTrophy.jpg" alt="Wenger Holding the golden trophy" width="100%" length="100%">
-        </div>
-        <h2 style="color: #0f2f70;"> The ‘Invincibles’</h2>
-        <p style="font-size: 20px;">Arsenal won 26 games and had 12 draws during their 2003/04 Premier League season,
-            thus going unbeaten, <br>the source of their nickname, the ‘Invincibles’.
-            <br> <br> Arsenal went a record 49 consecutive top-flight league games unbeaten from May 2003 to October
-            2004, <br> breaking Nottingham Forest's previous record of 42 set between November 1977 and November 1978.
-            <br>Led by
-            captain Patrick Vieira, Robert Pirès, Thierry Henry, and Dennis Bergkamp, the squad had a high level <br>of
-            talent.
-        </p>
 
+        <div class="row">
+            <p></p>
+            <h2 style="color: #0f2f70;"> Create A Player For Your Team</h2>
+            <p></p>
+            <section class="col">
+                <div class="CreatePlayer">
+                    <form id="createForm">                        
+                        <label for="teamName" class="form-label">Enter A Team Name</label>
+                        <input id="teamName" name="teamName" type="text" class="form-control">
+                        
+                        <p></p>
+                        <button type="reset" class="btn btn-primary">Reset</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                    <p></p>
+                    
+                        <form id="updateForm"> 
+                            <h2 style="color: #0f2f70;">Update Player</h2>                       
+                            <label for="teamName" class="form-label">Enter A Team Name</label>
+                        <input id="teamName" name="teamName" type="text" class="form-control">
+                        
+                        <p></p>
+                        <button type="reset" class="btn btn-primary">Reset</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    
+            </section>
+            <section class="col">
+                <div id="output" class="card-group row row-cols-3 g-4">
+
+                    <!-- output comes from javascript! -->
+                    
+                </div>
+            </section>
+        </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"
+        integrity="sha512-bZS47S7sPOxkjU/4Bt0zrhEtWx0y0CRkhEp8IckzK+ltifIIE9EMIMTuT/mEzoIMewUINruDBIR/jJnbguonqQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="team.js"></script>
+    </div>
+
+    
+
+     
+
+
     <!-- Footer -->
     <footer class="footer mt-auto py-3 bg-light ">
         <div class="container">
