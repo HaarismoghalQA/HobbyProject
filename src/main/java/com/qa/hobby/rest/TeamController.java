@@ -44,7 +44,7 @@ public class TeamController {
 		return this.service.findTeam(id);
 	}
 
-	@GetMapping("/")
+	@GetMapping("/getTeam")
 	public List<TeamDTO> getTeam() {
 		return this.service.getTeam();
 	}
