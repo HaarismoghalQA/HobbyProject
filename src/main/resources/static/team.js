@@ -43,7 +43,7 @@ const renderTeam = ({ teamId, teamName}) => {
     deleteButton.innerText = "Delete";
     deleteButton.className = "card-link";
     deleteButton.addEventListener("click", function () {
-        deletePlayer(teamId);
+        deleteTeam(teamId);
     })
         
     const updateButton = document.createElement("a");
@@ -63,11 +63,12 @@ const renderTeam = ({ teamId, teamName}) => {
                 .then(res => {
                     getTeam();
                     this.reset();
+                   location.reload();
                    
                 }).catch(err => console.log(err));
                 console.log(this);
         });
-       // updatePlayer(playerId);
+       
     });
 
     cardFooter.appendChild(deleteButton);
@@ -105,5 +106,5 @@ document.getElementById("createForm").addEventListener("submit", function (event
 
 const deleteTeam = async (id) => {
     const res = await axios.delete(`/team/remove/${id}`);
-    getPlayer();
+    getTeam();
 };
