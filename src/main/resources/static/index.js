@@ -116,18 +116,12 @@ const renderPlayer = ({ playerId, playerName, age }, team) => {
 			axios.put(`/player/update/${playerId}`, data)
 				.then(res => {
 					getTeam();
-                    this.reset();                  
+                    this.reset();     
+                   location.reload();
                 }).catch(err => console.log(err));
                 
                 
         });
-        
-        updateForm.addEventListener("onmouseout", () => {
-            console.log("Try this");
-            updateForm.removeEventListener("submit", () => {
-                
-            })
-        })
 		
 	});
 
