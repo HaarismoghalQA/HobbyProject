@@ -201,8 +201,8 @@
                 <div class="CreatePlayer">
                     <form id="createForm">
                         <label for="teamId">Select a Team ID:</label>
-                        <select name="teamId" id="teamId">
-                            <option value="">--Please choose an option--</option>                            
+                        <select name="teams" id="teamId">
+                            <!-- <option value="">--Please choose an option--</option>  -->                            
                         </select>
 
                         <p></p>
@@ -210,6 +210,7 @@
                         <input id="playerName" name="playerName" type="text" class="form-control">
                         <label for="age" class="form-label">Player Age</label>
                         <input id="age" name="age" type="text" class="form-control">
+                        
                         <p></p>
                         <button type="reset" class="btn btn-primary">Reset</button>
                         <button type="submit" class="btn btn-primary">Submit</button>
@@ -217,6 +218,10 @@
 
                     <form id="updateForm">
                         <h2 style="color: #0f2f70;">Update Player</h2>
+                        
+                        <p id="updateTeamId" name="updateTeamId"></p>
+                        <p id="teamName" name="teamName"></p>
+                        <p id="playerId" name="playerId"></p>
                         <label for="playerName" class="form-label">Player Name</label>
                         <input id="playerName" name="playerName" type="text" class="form-control">
                         <label for="age" class="form-label">Player Age</label>

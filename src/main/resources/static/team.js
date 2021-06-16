@@ -7,11 +7,11 @@ const getTeam = async () => {
     output.innerHTML = "";
     res.data.forEach(team => {
         console.log(team);
-        renderPlayer(team);
+        renderTeam(team);
     });
 }
 
-const renderPlayer = ({ teamId, teamName}) => {
+const renderTeam = ({ teamId, teamName}) => {
     const column = document.createElement("div");
     column.className = "col";
 
