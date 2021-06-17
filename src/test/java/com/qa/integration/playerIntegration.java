@@ -53,7 +53,7 @@ public class playerIntegration {
 
 	@Test
 	void testCreate() throws Exception {		
-		
+		 
 		Player testPlayer = new Player("Haaris", 23);
 		String testPlayerAsJSON = this.mapper.writeValueAsString(testPlayer);	 
 		

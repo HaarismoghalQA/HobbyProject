@@ -30,12 +30,13 @@ public class Team {
 	}
 	
 	
+	//Commented it out to see if it breaks my website
 	
-	public Team(String teamName, List<Player> players) {
-		super();
-		TeamName = teamName;
-		this.players = players;
-	}
+//	public Team(String teamName, List<Player> players) {
+//		super();
+//		TeamName = teamName;
+//		this.players = players;
+//	}
 
 
 
@@ -52,12 +53,12 @@ public class Team {
 		TeamName = teamName;
 	}
 
-	public Team(Long teamId, String teamName, List<Player> players) {
-		super();
-		TeamId = teamId;
-		TeamName = teamName;
-		this.players = players;
-	}
+//	public Team(Long teamId, String teamName, List<Player> players) {
+//		super();
+//		TeamId = teamId;
+//		TeamName = teamName;
+//		this.players = players;
+//	}
 
 	public Long getTeamId() {
 		return TeamId;
@@ -84,16 +85,17 @@ public class Team {
 	}
 
 
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((TeamId == null) ? 0 : TeamId.hashCode());
-		result = prime * result + ((TeamName == null) ? 0 : TeamName.hashCode());
-		result = prime * result + ((players == null) ? 0 : players.hashCode());
-		return result;
-	}
+	//Commented it out to see if it breaks my website
+	
+//	@Override
+//	public int hashCode() {
+//		final int prime = 31;
+//		int result = 1;
+//		result = prime * result + ((TeamId == null) ? 0 : TeamId.hashCode());
+//		result = prime * result + ((TeamName == null) ? 0 : TeamName.hashCode());
+//		result = prime * result + ((players == null) ? 0 : players.hashCode());
+//		return result;
+//	}
 
 
 

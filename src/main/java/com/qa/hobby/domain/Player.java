@@ -70,20 +70,17 @@ public class Player {
 		this.team = team;
 	}
 
-	@Override
-	public String toString() {
-		return "Player [PlayerId=" + PlayerId + ", Name=" + PlayerName + ", age=" + age + "]";
-	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((PlayerName == null) ? 0 : PlayerName.hashCode());
-		result = prime * result + ((PlayerId == null) ? 0 : PlayerId.hashCode());
-		result = prime * result + age;
-		return result;
-	}
+
+//	@Override
+//	public int hashCode() {
+//		final int prime = 31;
+//		int result = 1;
+//		result = prime * result + ((PlayerName == null) ? 0 : PlayerName.hashCode());
+//		result = prime * result + ((PlayerId == null) ? 0 : PlayerId.hashCode());
+//		result = prime * result + age;
+//		return result;
+//	}
 
 	@Override
 	public boolean equals(Object obj) {

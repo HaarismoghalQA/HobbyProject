@@ -24,6 +24,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.ResultMatcher;
+
 import com.qa.hobby.dto.PlayerDTO;
 import com.qa.hobby.dto.TeamDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -60,7 +61,8 @@ public class TeamIntegration {
 		Team testSavedTeam = new Team(2l, "Arsenal");
 		String testSavedTeamAsJSON = this.mapper.writeValueAsString(testSavedTeam);
 
-		RequestBuilder mockRequest = post("/team/create").content(testTeamAsJSON).contentType(MediaType.APPLICATION_JSON);
+		RequestBuilder mockRequest = post("/team/create").content(testTeamAsJSON)
+				.contentType(MediaType.APPLICATION_JSON);
 
 		ResultMatcher checkStatus = status().isOk();
 
@@ -69,33 +71,41 @@ public class TeamIntegration {
 		this.mvc.perform(mockRequest).andExpect(checkStatus).andExpect(checkBody);
 
 	}
-	
+
 	@Test
 	void testGetAll() throws Exception {
+
 		PlayerDTO player = new PlayerDTO(1l, "Haaris", 23);
 		List<PlayerDTO> playerDTOs = List.of(player);
-		
-		TeamDTO testTeam = new TeamDTO(1l,"Arsenal", playerDTOs);
-		List<TeamDTO> testTeams = List.of(testTeam);
-		
-		
-		String testTeamsAsJSONArray = this.mapper.writeValueAsString(testTeams);
-		
 
-		this.mvc.perform(get("/team/getTeam")).andExpect(status().isOk()).andExpect(content().json(testTeamsAsJSONArray));
+		TeamDTO testTeam = new TeamDTO(1l, "Arsenal", playerDTOs);
+		List<TeamDTO> testTeams = List.of(testTeam);
+
+		String testTeamsAsJSONArray = this.mapper.writeValueAsString(testTeams);
+
+		this.mvc.perform(get("/team/getTeam")).andExpect(status().isOk())
+				.andExpect(content().json(testTeamsAsJSONArray));
 	}
-	
+
 	@Test
-	void testUpdateTeam() throws Exception {		
+	void testUpdateTeam() throws Exception {
 		Team testPlatform = new Team(1l, "Arsenal");
 		String testPlatformAsJSON = this.mapper.writeValueAsString(testPlatform);
-		this.mvc.perform(put("/team/update/1").content(testPlatformAsJSON).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(content().json(testPlatformAsJSON));
+
+		PlayerDTO player = new PlayerDTO(1l, "Haaris", 23);
+		List<PlayerDTO> PlayersDTO = List.of(player);
+
+		TeamDTO updatedTeamDTO = new TeamDTO(1l, "Arsenal", PlayersDTO);
+		String updatedTeamAsJSON = this.mapper.writeValueAsString(updatedTeamDTO);
+
+		this.mvc.perform(put("/team/update/1").content(testPlatformAsJSON).contentType(MediaType.APPLICATION_JSON))
+				.andExpect(status().isOk()).andExpect(content().json(updatedTeamAsJSON));
 	}
-	
+
 	@Test
-	void testDelete() throws Exception {	
+	void testDelete() throws Exception {
 		assertThat(repo.existsById(1l));
 		this.mvc.perform(delete("/team/remove/1")).andExpect(status().isOk());
-		assertThat(!(repo.existsById(1l)));	
+		assertThat(!(repo.existsById(1l)));
 	}
 }

@@ -36,11 +36,6 @@ public class TeamController {
 		return this.service.createTeam(teams);
 	}
 
-//	@GetMapping("/find/{id}")
-//	public TeamDTO find(@PathVariable Long id) {
-//		return this.service.findTeam(id);
-//	}
-
 	@GetMapping("/getTeam")
 	public List<TeamDTO> getTeam() {
 		return this.service.getTeam();
