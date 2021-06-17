@@ -30,12 +30,6 @@ public class TeamService {
 		return this.mapper.mapToDTO(saved);
 	}
 
-//	public TeamDTO findTeam(Long id) {
-//		Optional<Team> optionalGarage = this.repo.findById(id);
-//		Team found = optionalGarage.orElseThrow(() -> new EntityNotFoundException());
-//		return this.mapper.mapToDTO(found);
-//	}
-
 	public TeamDTO updateTeam(Long id, Team newData) {
 		Team existing = this.repo.findById(id).orElseThrow(() -> new EntityNotFoundException()); // fetch existing
 																									// from db

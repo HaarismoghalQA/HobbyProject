@@ -9,38 +9,39 @@ public class TeamDTO {
 	private String TeamName;
 
 	private List<PlayerDTO> players;
-	
+
 	public TeamDTO() {
 		super();
 	}
+
+	// Testing to see if its needed
+
+//	public TeamDTO(String teamName, List<PlayerDTO> players) {
+//		super();
+//		TeamName = teamName;
+//		this.players = players;
+//	}
+//
+//
+//	public TeamDTO(String teamName) {
+//		super();
+//		TeamName = teamName;
+//		
+//	}
 	
-
-	public TeamDTO(String teamName, List<PlayerDTO> players) {
-		super();
-		TeamName = teamName;
-		this.players = players;
-	}
-
-
-	public TeamDTO(String teamName) {
-		super();
-		TeamName = teamName;
-		
-	}
-
-
-	public TeamDTO(Long teamId, String teamName) {
-		super();
-		TeamId = teamId;
-		TeamName = teamName;
-		
-	}
-
+	
 	public TeamDTO(Long teamId, String teamName, List<PlayerDTO> players) {
 		super();
 		TeamId = teamId;
 		TeamName = teamName;
 		this.players = players;
+	}
+
+	public TeamDTO(Long teamId, String teamName) {
+		super();
+		TeamId = teamId;
+		TeamName = teamName;
+
 	}
 
 	public Long getTeamId() {
@@ -67,7 +68,6 @@ public class TeamDTO {
 		this.players = player;
 	}
 
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -77,7 +77,6 @@ public class TeamDTO {
 		result = prime * result + ((players == null) ? 0 : players.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -106,10 +105,6 @@ public class TeamDTO {
 		return true;
 	}
 
-	
-	
-	
-
 //	@Override
 //	public boolean equals(Object obj) {
 //		TeamDTO o = null;
@@ -123,7 +118,5 @@ public class TeamDTO {
 //
 //		return false;
 //	}
-	
-	
 
 }
