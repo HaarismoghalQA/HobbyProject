@@ -11,7 +11,7 @@ import com.qa.hobby.dto.PlayerDTO;
 import com.qa.hobby.dto.TeamDTO;
 
 @Service
-public class TeamMapper  implements Mapper<Team, TeamDTO>{
+public class TeamMapper implements Mapper<Team, TeamDTO> {
 
 	private PlayerMapper playerMapper;
 
@@ -23,10 +23,13 @@ public class TeamMapper  implements Mapper<Team, TeamDTO>{
 	@Override
 	public TeamDTO mapToDTO(Team entity) {
 		TeamDTO dto = new TeamDTO();
+		if (entity == null)
+			return null;
+
 		dto.setTeamId(entity.getTeamId());
 		dto.setTeamName(entity.getTeamName());
 		List<PlayerDTO> players = new ArrayList<>();
-		for (Player player : entity.getPlayers()){
+		for (Player player : entity.getPlayers()) {
 			players.add(this.playerMapper.mapToDTO(player));
 		}
 		dto.setPlayers(players);

@@ -25,6 +25,23 @@ public class Team {
 	@JsonIgnore
 	List<Player> players = new ArrayList<>();
 	
+	public Team() {
+		super();
+	}
+	
+	
+	public Team(Long teamId, String teamName) {
+		super();
+		TeamId = teamId;
+		TeamName = teamName;
+	}
+
+	public Team(Long teamId, String teamName, List<Player> players) {
+		super();
+		TeamId = teamId;
+		TeamName = teamName;
+		this.players = players;
+	}
 
 	public Long getTeamId() {
 		return TeamId;

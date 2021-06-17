@@ -17,7 +17,7 @@ import com.qa.hobby.utils.PlayerMapper;
 public class PlayerService {
 
 	private PlayerRepo repo;
-	private PlayerMapper mapper;
+	public PlayerMapper mapper;
 
 	public PlayerService(PlayerRepo repo, PlayerMapper mapper) {
 		super();
@@ -55,6 +55,8 @@ public class PlayerService {
 		Player existing = this.repo.findById(id).orElseThrow(() -> new EntityNotFoundException()); // fetch existing
 																									// from
 		// db
+		System.out.println("Player Id: "+id);
+		existing.setPlayerId(id);
 		existing.setAge(player.getAge()); // update the values
 		existing.setPlayerName(player.getPlayerName());
 
