@@ -8,6 +8,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -24,87 +25,77 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.ResultMatcher;
 import com.qa.hobby.dto.PlayerDTO;
+import com.qa.hobby.dto.TeamDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.qa.hobby.HobbyProjectApplication;
 import com.qa.hobby.domain.Player;
+import com.qa.hobby.domain.Team;
 import com.qa.hobby.dto.PlayerDTO;
 import com.qa.hobby.repo.PlayerRepo;
+import com.qa.hobby.repo.TeamRepo;
 import com.qa.hobby.service.PlayerService;
-
-
-
 
 @SpringBootTest(classes = HobbyProjectApplication.class)
 @AutoConfigureMockMvc
 @Sql(scripts = { "classpath:test-schema.sql",
 		"classpath:test-data.sql" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
 @ActiveProfiles("test")
-public class playerIntegration {
+public class TeamIntegration {
 
 	@Autowired
 	private MockMvc mvc; // allows us to send mock requests
-	
 
 	@Autowired
-	private PlayerRepo repo;
+	private TeamRepo repo;
 
 	@Autowired
 	private ObjectMapper mapper; // ObjectMapper provides functionality for reading and writing JSON
 
 	@Test
-	void testCreate() throws Exception {		
-		
-		Player testPlayer = new Player("Haaris", 23);
-		String testPlayerAsJSON = this.mapper.writeValueAsString(testPlayer);	 
-		
-//		Player testSavedPlayer = new Player("Haaris", 23);
-//		String testSavedPlayerAsJSON = this.mapper.writeValueAsString(testSavedPlayer);
+	void testCreate() throws Exception {
 
-		
-		
-		PlayerDTO savedPlayereDTO = new PlayerDTO(2l, "Haaris", 23);
-		String savedPlayerAsJSON = this.mapper.writeValueAsString(savedPlayereDTO);
-		
-	
+		Team testTeam = new Team("Arsenal");
+		String testTeamAsJSON = this.mapper.writeValueAsString(testTeam);
 
-		RequestBuilder mockRequest = post("/player/create").content(testPlayerAsJSON).contentType(MediaType.APPLICATION_JSON);
+		Team testSavedTeam = new Team(2l, "Arsenal");
+		String testSavedTeamAsJSON = this.mapper.writeValueAsString(testSavedTeam);
+
+		RequestBuilder mockRequest = post("/team/create").content(testTeamAsJSON).contentType(MediaType.APPLICATION_JSON);
 
 		ResultMatcher checkStatus = status().isOk();
 
-		ResultMatcher checkBody = content().json(savedPlayerAsJSON);
+		ResultMatcher checkBody = content().json(testSavedTeamAsJSON);
 
 		this.mvc.perform(mockRequest).andExpect(checkStatus).andExpect(checkBody);
-		
-		
+
 	}
 	
 	@Test
 	void testGetAll() throws Exception {
-		PlayerDTO testPlayer = new PlayerDTO(1l, "Haaris", 23);
-		List<PlayerDTO> testPlayers = List.of(testPlayer);
-		String testPlayerAsJSONArray = this.mapper.writeValueAsString(testPlayers);
+		PlayerDTO player = new PlayerDTO(1l, "Haaris", 23);
+		List<PlayerDTO> playerDTOs = List.of(player);
+		
+		TeamDTO testTeam = new TeamDTO(1l,"Arsenal", playerDTOs);
+		List<TeamDTO> testTeams = List.of(testTeam);
+		
+		
+		String testTeamsAsJSONArray = this.mapper.writeValueAsString(testTeams);
+		
 
-		this.mvc.perform(get("/player/getAll")).andExpect(status().isOk()).andExpect(content().json(testPlayerAsJSONArray));
+		this.mvc.perform(get("/team/getTeam")).andExpect(status().isOk()).andExpect(content().json(testTeamsAsJSONArray));
 	}
 	
 	@Test
-	void testUpdate() throws Exception {
-		Player testPlayer = new Player (1l, "Haaris", 23);
-		String testPlayerAsJSON = this.mapper.writeValueAsString(testPlayer);
-		
-		PlayerDTO savedPlayereDTO = new PlayerDTO(1l, "Haaris", 23);
-		String savedPlayerAsJSON = this.mapper.writeValueAsString(savedPlayereDTO);
-		
-		
-
-		this.mvc.perform(put("/player/update/1").content(testPlayerAsJSON).contentType(MediaType.APPLICATION_JSON))
-				.andExpect(status().isOk()).andExpect(content().json(savedPlayerAsJSON));
-	}	 
+	void testUpdateTeam() throws Exception {		
+		Team testPlatform = new Team(1l, "Arsenal");
+		String testPlatformAsJSON = this.mapper.writeValueAsString(testPlatform);
+		this.mvc.perform(put("/team/update/1").content(testPlatformAsJSON).contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andExpect(content().json(testPlatformAsJSON));
+	}
 	
 	@Test
-	void testDelete() throws Exception {
+	void testDelete() throws Exception {	
 		assertThat(repo.existsById(1l));
-		this.mvc.perform(delete("/player/delete/1")).andExpect(status().isOk());
-		assertThat(!(repo.existsById(1l)));		
+		this.mvc.perform(delete("/team/remove/1")).andExpect(status().isOk());
+		assertThat(!(repo.existsById(1l)));	
 	}
 }

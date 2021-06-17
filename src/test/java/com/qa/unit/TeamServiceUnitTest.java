@@ -11,14 +11,17 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.ActiveProfiles;
 
+import com.qa.hobby.HobbyProjectApplication;
 import com.qa.hobby.domain.Player;
 import com.qa.hobby.domain.Team;
 import com.qa.hobby.dto.TeamDTO;
 import com.qa.hobby.repo.TeamRepo;
 import com.qa.hobby.service.TeamService;
 
-@SpringBootTest
+@SpringBootTest(classes = HobbyProjectApplication.class)
+@ActiveProfiles("test")
 public class TeamServiceUnitTest {
 
 	@Autowired
@@ -53,20 +56,26 @@ public class TeamServiceUnitTest {
 
 	@Test
 	void testUpdate() {
-		// GIVEN
+		// RESOURCES
 		Long testId = 1l;
+		Team testData = new Team("liverpool");
 		Team existing = new Team(testId, "");
-		Team updatedTeam = new Team(testId, "Liverpool");
+		Team updatedTeam = new Team(testId, "Liverpool");		 
+ 		TeamDTO updatedTeamDTO = new TeamDTO(testId, "Liverpool");
+ 		updatedTeamDTO.setPlayers(new ArrayList<>()); 
 		
-		// When
+		// RULES
 		Mockito.when(this.repo.findById(testId)).thenReturn(Optional.of(existing));
 		Mockito.when(this.repo.save(updatedTeam)).thenReturn(updatedTeam);
 
-		// Then
-		assertThat(this.service.updateTeam(testId, updatedTeam)).isEqualTo(this.service.mapper.mapToDTO(updatedTeam));
+		// ACTIONS
+		TeamDTO results = this.service.updateTeam(testId, updatedTeam);
 
+		//ASSERTIONS
+		assertThat(results).usingRecursiveComparison().isEqualTo(updatedTeamDTO);
+		
 		Mockito.verify(this.repo, Mockito.times(1)).findById(testId);
-		Mockito.verify(this.repo, Mockito.times(1)).save(updatedTeam);
+		Mockito.verify(this.repo, Mockito.times(1)).save(updatedTeam); 
 	}
 
 	@Test

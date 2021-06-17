@@ -31,10 +31,6 @@ public class PlayerController {
 		this.service = service;
 	}
 
-	@RequestMapping(path = "/test", method = RequestMethod.GET)
-	public String hello() {
-		return "Hello, World!";
-	}
 
 	@PostMapping("/create")
 	public PlayerDTO addPlayer(@RequestBody Player player) {

@@ -9,16 +9,20 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.ActiveProfiles;
 
+import com.qa.hobby.HobbyProjectApplication;
 import com.qa.hobby.domain.Player;
 import com.qa.hobby.dto.PlayerDTO;
 import com.qa.hobby.repo.PlayerRepo;
 import com.qa.hobby.service.PlayerService;
 
-@SpringBootTest
+@SpringBootTest(classes = HobbyProjectApplication.class)
+@ActiveProfiles("test")
 public class PlayerSerivceUnitTest {
-
+ 
 	@Autowired
 	private PlayerService service;
 
@@ -32,7 +36,7 @@ public class PlayerSerivceUnitTest {
 		Player testData = new Player(testId, "John", 23);
 		PlayerDTO playerDTO = this.service.mapper.mapToDTO(testData);
 
-		Mockito.when(this.repo.save(testData)).thenReturn(testData);
+		Mockito.when(this.repo.save(testData)).thenReturn(testData); 
 		assertThat(this.service.addPlayer(testData)).isEqualTo(playerDTO);
 	}
 

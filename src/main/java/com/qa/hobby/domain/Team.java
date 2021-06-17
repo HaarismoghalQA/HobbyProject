@@ -30,6 +30,22 @@ public class Team {
 	}
 	
 	
+	
+	public Team(String teamName, List<Player> players) {
+		super();
+		TeamName = teamName;
+		this.players = players;
+	}
+
+
+
+	public Team(String teamName) {
+		super();
+		TeamName = teamName;
+	}
+
+
+
 	public Team(Long teamId, String teamName) {
 		super();
 		TeamId = teamId;
@@ -66,5 +82,48 @@ public class Team {
 	public void setPlayers(List<Player> player) {
 		players = player;
 	}
+
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((TeamId == null) ? 0 : TeamId.hashCode());
+		result = prime * result + ((TeamName == null) ? 0 : TeamName.hashCode());
+		result = prime * result + ((players == null) ? 0 : players.hashCode());
+		return result;
+	}
+
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Team other = (Team) obj;
+		if (TeamId == null) {
+			if (other.TeamId != null)
+				return false;
+		} else if (!TeamId.equals(other.TeamId))
+			return false;
+		if (TeamName == null) {
+			if (other.TeamName != null)
+				return false;
+		} else if (!TeamName.equals(other.TeamName))
+			return false;
+		if (players == null) {
+			if (other.players != null)
+				return false;
+		} else if (!players.equals(other.players))
+			return false;
+		return true;
+	}
+	
+	
 
 }
