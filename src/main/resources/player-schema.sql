@@ -17,5 +17,5 @@ create table player
 create table team
 (
     `TeamId` integer AUTO_INCREMENT PRIMARY KEY,
-    `TeamName` varchar(255), make varchar(255)
+    `TeamName` varchar(255)
 );

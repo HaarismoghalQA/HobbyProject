@@ -12,6 +12,7 @@ public class PlayerMapper implements Mapper<Player, PlayerDTO> {
 	public PlayerDTO mapToDTO(Player player) {
 		PlayerDTO dto = new PlayerDTO();
 
+		dto.setPlayerId(player.getPlayerId());
 		dto.setPlayerName(player.getPlayerName());
 		dto.setPlayerId(player.getPlayerId());
 		dto.setAge(player.getAge());

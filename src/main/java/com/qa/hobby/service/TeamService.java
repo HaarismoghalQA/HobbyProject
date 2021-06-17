@@ -13,13 +13,11 @@ import com.qa.hobby.dto.TeamDTO;
 import com.qa.hobby.repo.TeamRepo;
 import com.qa.hobby.utils.TeamMapper;
 
-
 @Service
 public class TeamService {
 
 	private TeamRepo repo;
-
-	private TeamMapper mapper;
+	public TeamMapper mapper;
 
 	public TeamService(TeamRepo repo, TeamMapper mapper) {
 		super();
@@ -32,16 +30,17 @@ public class TeamService {
 		return this.mapper.mapToDTO(saved);
 	}
 
-	public TeamDTO findTeam(Long id) {
-		Optional<Team> optionalGarage = this.repo.findById(id);
-		Team found = optionalGarage.orElseThrow(() -> new EntityNotFoundException());
-		return this.mapper.mapToDTO(found);
-	}
+//	public TeamDTO findTeam(Long id) {
+//		Optional<Team> optionalGarage = this.repo.findById(id);
+//		Team found = optionalGarage.orElseThrow(() -> new EntityNotFoundException());
+//		return this.mapper.mapToDTO(found);
+//	}
 
 	public TeamDTO updateTeam(Long id, Team newData) {
 		Team existing = this.repo.findById(id).orElseThrow(() -> new EntityNotFoundException()); // fetch existing
 																									// from db
 
+		existing.setTeamId(id);
 		existing.setTeamName(newData.getTeamName()); // update the values
 
 		Team updated = this.repo.save(existing); // save it back to overwrite original

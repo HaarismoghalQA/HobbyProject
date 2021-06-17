@@ -22,7 +22,7 @@ import com.qa.hobby.service.PlayerService;
 @RestController
 @RequestMapping("/player")
 public class PlayerController {
-	
+
 	private PlayerService service;
 
 	@Autowired
@@ -30,31 +30,31 @@ public class PlayerController {
 		super();
 		this.service = service;
 	}
-	
+
 	@RequestMapping(path = "/test", method = RequestMethod.GET)
 	public String hello() {
 		return "Hello, World!";
 	}
-	
+
 	@PostMapping("/create")
-    public PlayerDTO addPlayer(@RequestBody Player player) {
-        return this.service.addPlayer(player);
-    }
-	
-	 @GetMapping("/getAll")
-	 public List<PlayerDTO> getPlayer() {
-			return this.service.getPlayer();
-		}
+	public PlayerDTO addPlayer(@RequestBody Player player) {
+		return this.service.addPlayer(player);
+	}
 
-	    @PutMapping("/update/{playerId}")
-	    public PlayerDTO updatePlayer(@PathVariable Long playerId, @RequestBody Player player) {
-	    	return this.service.updatePlayer(playerId, player);
-	    }
+	@GetMapping("/getAll")
+	public List<PlayerDTO> getPlayer() {
+		return this.service.getPlayer();
+	}
 
-	    @DeleteMapping("/delete/{playerId}")
-	    public boolean removePlayer(@PathVariable Long playerId) {
-	        // Remove Person and return it
-	    	return this.service.removePlayer(playerId); 
-	    }
+	@PutMapping("/update/{playerId}")
+	public PlayerDTO updatePlayer(@PathVariable Long playerId, @RequestBody Player player) {
+		return this.service.updatePlayer(playerId, player);
+	}
+
+	@DeleteMapping("/delete/{playerId}")
+	public boolean removePlayer(@PathVariable Long playerId) {
+		// Remove Person and return it
+		return this.service.removePlayer(playerId);
+	}
 
 }
