@@ -29,10 +29,7 @@ public class TeamController {
 		this.service = service;
 	}
 	
-	@RequestMapping(path = "/test", method = RequestMethod.GET)
-	public String hello() {
-		return "Hello, World!";
-	}
+
 
 	@PostMapping("/create")
 	public TeamDTO createTeam(@RequestBody Team teams) {

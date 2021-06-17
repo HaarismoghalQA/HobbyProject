@@ -1,15 +1,14 @@
-drop schema if exists testdb;
-create schema if not exists testdb;
-use testdb;
+drop table if exists player CASCADE;
+drop table if exists team CASCADE;
 
  
 
 create table player
 (
-    `PlayerId` int not null AUTO_INCREMENT PRIMARY KEY,
-    `PlayerName` varchar(255),
-    `age` int not null,
-    `TeamId` integer
+    PlayerId int not null AUTO_INCREMENT PRIMARY KEY,
+    PlayerName varchar(255),
+    age int not null,
+    TeamId int
 );
 
  
