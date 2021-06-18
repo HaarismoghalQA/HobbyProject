@@ -105,18 +105,4 @@ public class TeamDTO {
 		return true;
 	}
 
-//	@Override
-//	public boolean equals(Object obj) {
-//		TeamDTO o = null;
-//		if (obj instanceof TeamDTO)
-//			o = (TeamDTO) obj;
-//		else
-//			return false;
-//
-//		if (this.TeamId == o.getTeamId() && this.TeamName.equals(o.getTeamName()))
-//			return true;
-//
-//		return false;
-//	}
-
 }

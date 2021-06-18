@@ -19,7 +19,7 @@ import com.qa.hobby.dto.PlayerDTO;
 import com.qa.hobby.repo.PlayerRepo;
 import com.qa.hobby.service.PlayerService;
 
-@SpringBootTest(classes = HobbyProjectApplication.class)
+@SpringBootTest(classes = HobbyProjectApplication.class, webEnvironment = WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
 public class PlayerSerivceUnitTest {
  

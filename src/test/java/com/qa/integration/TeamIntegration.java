@@ -36,7 +36,7 @@ import com.qa.hobby.repo.PlayerRepo;
 import com.qa.hobby.repo.TeamRepo;
 import com.qa.hobby.service.PlayerService;
 
-@SpringBootTest(classes = HobbyProjectApplication.class)
+@SpringBootTest(classes = HobbyProjectApplication.class, webEnvironment = WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
 @Sql(scripts = { "classpath:test-schema.sql",
 		"classpath:test-data.sql" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
