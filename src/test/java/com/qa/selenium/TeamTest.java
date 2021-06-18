@@ -18,11 +18,15 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.jdbc.Sql;
+import org.springframework.test.context.jdbc.Sql.ExecutionPhase;
 
 import com.qa.hobby.HobbyProjectApplication;
 
 @SpringBootTest(classes = HobbyProjectApplication.class, webEnvironment = WebEnvironment.RANDOM_PORT)
 @ActiveProfiles("test")
+@Sql(scripts = { "classpath:test-schema.sql",
+"classpath:test-data.sql" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
 public class TeamTest {
 
 	private WebDriver driver;
@@ -52,7 +56,7 @@ public class TeamTest {
 	}
 
 	@Test
-	public void testCreateTeam() throws InterruptedException {
+	public void testCreateTeam() throws InterruptedException { 
 
 		driver.get("http://localhost:8080/index.html");
 
@@ -62,9 +66,14 @@ public class TeamTest {
 		WebElement u = driver.findElement(By.name("teamName"));
 
 		u.sendKeys("Arsenal");
+		Thread.sleep(3000); 
 		u.submit();
 
-		Thread.sleep(5000); 
+		Thread.sleep(3000); 
+		
+		// ASSERTIONS
+		targ = driver.findElement(By.xpath("/html/body/div[2]/div/section[2]/div/div/div/div[1]/p[2]"));
+		assertEquals("Team Name: Arsenal", targ.getText());
 	}
 	
 	@Test
@@ -83,10 +92,14 @@ public class TeamTest {
 		WebElement u = driver.findElement(By.xpath("/html/body/div[2]/div/section[1]/div/form[2]/input"));
 		
 		
-		u.sendKeys("test");
+		u.sendKeys("Arsenal");
 		u.submit();
 
-		Thread.sleep(5000); 
+		Thread.sleep(2000); 
+		
+		// ASSERTIONS
+		targ = driver.findElement(By.xpath("/html/body/div[2]/div/section[2]/div/div/div/div[1]/p[2]"));
+		assertEquals("Team Name: Arsenal", targ.getText());
 	}
 	
 	@Test
@@ -102,13 +115,8 @@ public class TeamTest {
 		targ.click();
 		Thread.sleep(2000); 
 		
-//		WebElement u = driver.findElement(By.xpath("/html/body/div[2]/div/section[1]/div/form[2]/input"));
-//		
-//		
-//		u.sendKeys("test");
-//		u.submit();
 
-		Thread.sleep(5000); 
+		Thread.sleep(1000); 
 	}
 
 	
