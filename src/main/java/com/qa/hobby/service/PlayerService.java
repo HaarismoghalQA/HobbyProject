@@ -30,14 +30,6 @@ public class PlayerService {
 		return this.mapper.mapToDTO(saved);
 	}
 
-	// public PlayerDTO getAllPlayer(Long id) {
-		//	Optional<Player> optionalPlayer = this.repo.findById(id);
-		//	Player found = optionalPlayer.orElseThrow(() -> new EntityNotFoundException());
-		//	return this.mapper.mapToDTO(found);
-		// return this.repo.findAll();
-		// return this.service.getAllPlayer();
-	//}
-
 	public List<PlayerDTO> getPlayer() {
 		List<Player> players = this.repo.findAll();
 		List<PlayerDTO> dtos = new ArrayList<>();
@@ -55,7 +47,7 @@ public class PlayerService {
 		Player existing = this.repo.findById(id).orElseThrow(() -> new EntityNotFoundException()); // fetch existing
 																									// from
 		// db
-		System.out.println("Player Id: "+id);
+		System.out.println("Player Id: " + id);
 		existing.setPlayerId(id);
 		existing.setAge(player.getAge()); // update the values
 		existing.setPlayerName(player.getPlayerName());
@@ -64,13 +56,6 @@ public class PlayerService {
 
 		return this.mapper.mapToDTO(updated);
 
-//        Optional<Player> existingOptional = this.repo.findById(id); 
-//        Player existing = existingOptional.get();
-//
-//        existing.setAge(player.getAge());
-//        existing.setPlayerName(player.getPlayerName()); 
-//
-//        return this.repo.save(existing);
 	}
 
 	public boolean removePlayer(Long id) {

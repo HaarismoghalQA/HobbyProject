@@ -37,6 +37,13 @@ public class Team {
 //		TeamName = teamName;
 //		this.players = players;
 //	}
+	
+//	public Team(Long teamId, String teamName, List<Player> players) {
+//	super();
+//	TeamId = teamId;
+//	TeamName = teamName;
+//	this.players = players;
+//}
 
 
 
@@ -53,12 +60,7 @@ public class Team {
 		TeamName = teamName;
 	}
 
-//	public Team(Long teamId, String teamName, List<Player> players) {
-//		super();
-//		TeamId = teamId;
-//		TeamName = teamName;
-//		this.players = players;
-//	}
+
 
 	public Long getTeamId() {
 		return TeamId;
