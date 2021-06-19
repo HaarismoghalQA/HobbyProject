@@ -1,14 +1,14 @@
 package com.qa.selenium;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
@@ -23,23 +23,23 @@ import org.springframework.test.context.jdbc.Sql.ExecutionPhase;
 
 import com.qa.hobby.HobbyProjectApplication;
 
-@SpringBootTest(classes = HobbyProjectApplication.class, webEnvironment = WebEnvironment.RANDOM_PORT)
-@ActiveProfiles("test")
+@SpringBootTest(classes = HobbyProjectApplication.class, webEnvironment = WebEnvironment.DEFINED_PORT)
 @Sql(scripts = { "classpath:test-schema.sql",
-"classpath:test-data.sql" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
+		"classpath:test-data.sql" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
+@ActiveProfiles("test")
 public class TeamTest {
 
-	private WebDriver driver;
-	private WebElement targ;
+	private static WebDriver driver;
+	private static WebElement targ;
 
-	@Before
-	public void setup() {
+	@BeforeAll
+	public static void setup() {
 		System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
 		driver = new ChromeDriver(chromeCfg());
-		driver.manage().window().setSize(new Dimension(1600, 900)); 
+		driver.manage().window().setSize(new Dimension(1600, 900));
 
 	}
-	
+
 	public static ChromeOptions chromeCfg() {
 		Map<String, Object> prefs = new HashMap<String, Object>();
 		ChromeOptions cOptions = new ChromeOptions();
@@ -56,26 +56,47 @@ public class TeamTest {
 	}
 
 	@Test
-	public void testCreateTeam() throws InterruptedException { 
+	public void testCreateTeam() throws InterruptedException {
 
 		driver.get("http://localhost:8080/index.html");
 
 		targ = driver.findElement(By.xpath("/html/body/main/div/header/div[3]/ul/li[3]/a/p"));
 		targ.click();
-		
+
+		Thread.sleep(5000);
+
 		WebElement u = driver.findElement(By.name("teamName"));
 
-		u.sendKeys("Arsenal");
-		Thread.sleep(3000); 
+		u.sendKeys("Chelsea");
+		Thread.sleep(3000);
 		u.submit();
 
-		Thread.sleep(3000); 
-		
+		Thread.sleep(3000);
+
 		// ASSERTIONS
 		targ = driver.findElement(By.xpath("/html/body/div[2]/div/section[2]/div/div/div/div[1]/p[2]"));
 		assertEquals("Team Name: Arsenal", targ.getText());
 	}
-	
+
+	@Test
+	public void testReadTeam() throws InterruptedException {
+
+		driver.get("http://localhost:8080/index.html");
+
+		// navigates to create team tab
+		targ = driver.findElement(By.xpath("/html/body/main/div/header/div[3]/ul/li[3]/a/p"));
+		targ.click();
+		Thread.sleep(2000);
+
+		// ASSERTIONS
+		// find id
+		targ = driver.findElement(By.xpath("/html/body/div[2]/div/section[2]/div/div[1]/div/div[1]/p[1]"));
+		assertEquals("Team Id: 1", targ.getText());
+		// Find Team name
+		targ = driver.findElement(By.xpath("/html/body/div[2]/div/section[2]/div/div[1]/div/div[1]/p[2]"));
+		assertEquals("Team Name: Arsenal", targ.getText());
+	}
+
 	@Test
 	public void testUpdateTeam() throws InterruptedException {
 
@@ -83,25 +104,24 @@ public class TeamTest {
 
 		targ = driver.findElement(By.xpath("/html/body/main/div/header/div[3]/ul/li[3]/a/p"));
 		targ.click();
-		Thread.sleep(2000); 
-		
+		Thread.sleep(2000);
+
 		targ = driver.findElement(By.xpath("/html/body/div[2]/div/section[2]/div/div/div/div[2]/a[2]"));
 		targ.click();
-		Thread.sleep(2000); 
-		
+		Thread.sleep(2000);
+
 		WebElement u = driver.findElement(By.xpath("/html/body/div[2]/div/section[1]/div/form[2]/input"));
-		
-		
-		u.sendKeys("Arsenal");
+
+		u.sendKeys("test");
 		u.submit();
 
-		Thread.sleep(2000); 
-		
+		Thread.sleep(2000);
+
 		// ASSERTIONS
-		targ = driver.findElement(By.xpath("/html/body/div[2]/div/section[2]/div/div/div/div[1]/p[2]"));
-		assertEquals("Team Name: Arsenal", targ.getText());
+		targ = driver.findElement(By.xpath("/html/body/div[2]/div/section[2]/div/div[1]/div/div[1]/p[2]"));
+		assertEquals("Team Name: test", targ.getText());
 	}
-	
+
 	@Test
 	public void testDeleteTeam() throws InterruptedException {
 
@@ -109,20 +129,21 @@ public class TeamTest {
 
 		targ = driver.findElement(By.xpath("/html/body/main/div/header/div[3]/ul/li[3]/a/p"));
 		targ.click();
-		Thread.sleep(2000); 
-		
+		Thread.sleep(2000);
+
 		targ = driver.findElement(By.xpath("/html/body/div[2]/div/section[2]/div/div[1]/div/div[2]/a[1]"));
 		targ.click();
-		Thread.sleep(2000); 
-		
+		Thread.sleep(2000);
 
-		Thread.sleep(1000); 
+		// Assertion
+		// find element
+//		WebElement i = driver.findElement(By.xpath("/html/body/div[2]/div/section[2]/div/div[1]"));
+//		assertEquals(null, i.isDisplayed());
+
 	}
 
-	
-
-	@After
-	public void tearDown() {
+	@AfterAll
+	public static void tearDown() {
 		driver.quit();
 	}
 }

@@ -6,10 +6,9 @@ import static org.junit.Assert.assertTrue;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
@@ -24,17 +23,17 @@ import org.springframework.test.context.jdbc.Sql.ExecutionPhase;
 
 import com.qa.hobby.HobbyProjectApplication;
 
-@SpringBootTest(classes = HobbyProjectApplication.class, webEnvironment = WebEnvironment.RANDOM_PORT)
+@SpringBootTest(classes = HobbyProjectApplication.class, webEnvironment = WebEnvironment.DEFINED_PORT)
 @ActiveProfiles("test")
 @Sql(scripts = { "classpath:test-schema.sql",
-"classpath:test-data.sql" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
-public class PlayersTest {  
+		"classpath:test-data.sql" }, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
+public class PlayersTest {
 
-	private WebDriver driver;
-	private WebElement targ;
+	private static WebDriver driver;
+	private static WebElement targ;
 
-	@Before
-	public void setup() {
+	@BeforeAll
+	public static void setup() {
 		System.setProperty("webdriver.chrome.driver", "src/main/resources/drivers/chromedriver.exe");
 		driver = new ChromeDriver(chromeCfg());
 		driver.manage().window().setSize(new Dimension(1600, 900));
@@ -61,6 +60,8 @@ public class PlayersTest {
 
 		driver.get("http://localhost:8080/index.html");
 
+		Thread.sleep(2000);
+
 		targ = driver.findElement(By.xpath("/html/body/main/div/header/div[3]/ul/li[2]/a/p"));
 		targ.click();
 		Thread.sleep(2000);
@@ -75,32 +76,31 @@ public class PlayersTest {
 
 		WebElement u = driver.findElement(By.name("playerName"));
 
-		u.sendKeys("Haaris");
+		u.sendKeys("Henry");
 
 		Thread.sleep(2000);
 
 		WebElement a = driver.findElement(By.name("age"));
 
-		a.sendKeys("23");
+		a.sendKeys("25");
 		Thread.sleep(2000);
 		u.submit();
 
 		Thread.sleep(2000);
-		
+
 		// ASSERTIONS
-		targ = driver.findElement(By.xpath("/html/body/div[2]/div/section[2]/div/div/div/div[1]/p[4]"));
-		assertEquals("playerName: Haaris", targ.getText());
-		
-		targ = driver.findElement(By.xpath("/html/body/div[2]/div/section[2]/div/div/div/div[1]/p[5]"));
-		assertEquals("Age: 23", targ.getText());
-		
-		
+		targ = driver.findElement(By.xpath("/html/body/div[2]/div/section[2]/div/div[2]/div/div[1]/p[4]"));
+		assertEquals("playerName: Henry", targ.getText());
+
+		targ = driver.findElement(By.xpath("/html/body/div[2]/div/section[2]/div/div[2]/div/div[1]/p[5]"));
+		assertEquals("Age: 25", targ.getText());
+
 	}
 
-	@Test 
+	@Test
 	public void testUpdatePlayer() throws InterruptedException {
 
-		driver.get("http://localhost:8080/index.html"); 
+		driver.get("http://localhost:8080/index.html");
 
 		// clicks on FantasyTeam tab on nav bar
 		targ = driver.findElement(By.xpath("/html/body/main/div/header/div[3]/ul/li[2]/a/p"));
@@ -123,13 +123,36 @@ public class PlayersTest {
 		u.submit();
 
 		Thread.sleep(5000);
-		
+
 		// ASSERTIONS
 		targ = driver.findElement(By.xpath("/html/body/div[2]/div/section[2]/div/div/div/div[1]/p[4]"));
 		assertEquals("playerName: Cristiano Ronaldo", targ.getText());
-				
+
 		targ = driver.findElement(By.xpath("/html/body/div[2]/div/section[2]/div/div/div/div[1]/p[5]"));
 		assertEquals("Age: 29", targ.getText());
+
+	}
+
+	@Test
+	public void testReadTeam() throws InterruptedException {
+
+		driver.get("http://localhost:8080/index.html");
+
+		// clicks on FantasyTeam tab on nav bar
+		targ = driver.findElement(By.xpath("/html/body/main/div/header/div[3]/ul/li[2]/a/p"));
+		targ.click();
+		Thread.sleep(2000);
+		
+		// ASSERTIONS
+		// Targets the player id
+		WebElement i = driver.findElement(By.xpath("/html/body/div[2]/div/section[2]/div/div[1]/div/div[1]/p[3]"));
+		assertEquals("PlayerId: 1", i.getText());
+		// Targets the player name
+		WebElement n = driver.findElement(By.xpath("/html/body/div[2]/div/section[2]/div/div[1]/div/div[1]/p[4]"));
+		assertEquals("playerName: Haaris", n.getText());
+		
+		
+		
 
 	}
 
@@ -146,19 +169,16 @@ public class PlayersTest {
 		targ = driver.findElement(By.xpath("/html/body/div[2]/div/section[2]/div/div/div/div[2]/a[1]"));
 		targ.click();
 		Thread.sleep(2000);
-		
+
 		// ASSERTIONS
-		targ = driver.findElement(By.xpath("/html/body/div[2]/div/section[2]/div/div[1]/div/div[1]/p[3]"));
-		//assertTrue("PlayerId: 6", targ.getText());
-		
-		//the id
-		///html/body/div[2]/div/section[2]/div/div[1]/div/div[1]/p[3]
-		
-		Thread.sleep(5000);
+		// targ =
+		// driver.findElement(By.xpath("/html/body/div[2]/div/section[2]/div/div[1]/div/div[1]/p[3]"));
+		// assertTrue("PlayerId: 6", targ.getText());
+
 	}
 
-	@After
-	public void tearDown() {
+	@AfterAll
+	public static void tearDown() {
 		driver.quit();
 	}
 }
