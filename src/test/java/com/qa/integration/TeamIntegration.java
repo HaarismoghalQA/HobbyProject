@@ -59,7 +59,7 @@ public class TeamIntegration {
 		String testTeamAsJSON = this.mapper.writeValueAsString(testTeam);
 
 		Team testSavedTeam = new Team(2l, "Arsenal");
-		String testSavedTeamAsJSON = this.mapper.writeValueAsString(testSavedTeam);
+		String testSavedTeamAsJSON = this.mapper.writeValueAsString(testSavedTeam); 
 
 		RequestBuilder mockRequest = post("/team/create").content(testTeamAsJSON)
 				.contentType(MediaType.APPLICATION_JSON);
