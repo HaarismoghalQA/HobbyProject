@@ -171,9 +171,9 @@ public class PlayersTest {
 		Thread.sleep(2000);
 
 		// ASSERTIONS
-		// targ =
-		// driver.findElement(By.xpath("/html/body/div[2]/div/section[2]/div/div[1]/div/div[1]/p[3]"));
-		// assertTrue("PlayerId: 6", targ.getText());
+		
+		Boolean isPresent = driver.findElements(By.xpath("/html/body/div[2]/div/section[2]/div/div[1]/div/div[1]/p[3]")).size() > 0;
+		 assertEquals(false, isPresent);
 
 	}
 
