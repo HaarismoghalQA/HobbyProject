@@ -137,8 +137,8 @@ public class TeamTest {
 
 		// Assertion
 		// find element
-//		WebElement i = driver.findElement(By.xpath("/html/body/div[2]/div/section[2]/div/div[1]"));
-//		assertEquals(null, i.isDisplayed());
+		Boolean isPresent = driver.findElements(By.xpath("/html/body/div[2]/div/section[2]/div/div[1]")).size() > 0;
+		assertEquals(false, isPresent);
 
 	}
 
