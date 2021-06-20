@@ -66,9 +66,9 @@ This application has been tested using JUnit testing. Mockito was used along wit
 4. Scroll down until you see ``` spring.datasource.url= ``` declaring your connection point
 5. Change the connection point to your desired Database location
 6. In the main folder ```'src/test/java'``` you can open each package to see each tests.
-7. You can run each test individually by right clicking the java file and click on run as then :```'run as JUnit test'```
-8. Similarly you can choose to do a coverage test by right clicking the java file and click on Coverage as then :```'run as JUnit test'```
-9. You can run all the test by right clicking the the whole project file and do a Coverage/Normal Test and click on run as then :```'run as JUnit test'```
+7. You can run each test individually by right clicking the java file and click on run as, then :```'run as JUnit test'```
+8. Similarly you can choose to do a coverage test by right clicking the java file and click on Coverage as, then :```'run as JUnit test'```
+9. You can run all the test by right clicking the the whole project file and do a Coverage/Normal Test and click on run as, then :```'run as JUnit test'```
 
 ## Integeration
 
