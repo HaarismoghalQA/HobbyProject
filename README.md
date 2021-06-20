@@ -110,5 +110,5 @@ This project is licensed under the MIT license - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* I would like to thank *[Jordan Harrison](https://github.com/JHarry444) - QA trainer *[Alan Davis](https://github.com/MorickClive)  - QA trainer *[Edsel Tham](https://github.com/MorickClive)  - QA trainer
+* I would like to thank *[Jordan Harrison](https://github.com/JHarry444) - QA trainer *[Alan Davis](https://github.com/MorickClive)  - QA trainer *[Edsel Tham](https://github.com/edseltham88)  - QA trainer
 
