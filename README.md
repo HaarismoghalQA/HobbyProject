@@ -1,6 +1,6 @@
 Coverage: 84.3%
 
-# Inventory Management System by Haaris Moghal
+# (HWA) Hobby Web Application by Haaris Moghal
 
 This is a Full stack web application which uses Java (backend), HTML, CSS, and JavaScript (frontend) that a user can interact with using a web browser (HTML pages).
 It uses a MySQL database with the following entities/tables via a cloud platform instance: player and team.
