@@ -56,7 +56,7 @@ public class playerIntegration {
 	void testCreate() throws Exception {		
 		 
 		Player testPlayer = new Player("Haaris", 23);
-		String testPlayerAsJSON = this.mapper.writeValueAsString(testPlayer);	 
+		String testPlayerAsJSON = this.mapper.writeValueAsString(testPlayer); 	 
 		
 //		Player testSavedPlayer = new Player("Haaris", 23);
 //		String testSavedPlayerAsJSON = this.mapper.writeValueAsString(testSavedPlayer);
