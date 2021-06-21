@@ -3,7 +3,7 @@ package com.qa.hobby.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,43 +24,21 @@ public class Team {
 	@OneToMany(mappedBy = "team")
 	@JsonIgnore
 	List<Player> players = new ArrayList<>();
-	
+
 	public Team() {
 		super();
 	}
-	
-	
-	//Commented it out to see if it breaks my website
-	
-//	public Team(String teamName, List<Player> players) {
-//		super();
-//		TeamName = teamName;
-//		this.players = players;
-//	}
-	
-//	public Team(Long teamId, String teamName, List<Player> players) {
-//	super();
-//	TeamId = teamId;
-//	TeamName = teamName;
-//	this.players = players;
-//}
-
-
 
 	public Team(String teamName) {
 		super();
 		TeamName = teamName;
 	}
 
-
-
 	public Team(Long teamId, String teamName) {
 		super();
 		TeamId = teamId;
 		TeamName = teamName;
 	}
-
-
 
 	public Long getTeamId() {
 		return TeamId;
@@ -86,9 +64,8 @@ public class Team {
 		players = player;
 	}
 
+	// Commented it out to see if it breaks my website
 
-	//Commented it out to see if it breaks my website
-	
 //	@Override
 //	public int hashCode() {
 //		final int prime = 31;
@@ -98,8 +75,6 @@ public class Team {
 //		result = prime * result + ((players == null) ? 0 : players.hashCode());
 //		return result;
 //	}
-
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -127,7 +102,5 @@ public class Team {
 			return false;
 		return true;
 	}
-	
-	
 
 }

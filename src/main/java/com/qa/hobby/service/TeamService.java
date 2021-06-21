@@ -2,12 +2,8 @@ package com.qa.hobby.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-
 import javax.persistence.EntityNotFoundException;
-
 import org.springframework.stereotype.Service;
-
 import com.qa.hobby.domain.Team;
 import com.qa.hobby.dto.TeamDTO;
 import com.qa.hobby.repo.TeamRepo;
